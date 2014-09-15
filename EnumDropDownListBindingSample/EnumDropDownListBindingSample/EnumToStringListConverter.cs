@@ -23,7 +23,8 @@ namespace EnumDropDownListBindingSample
             }
             else
             {
-                return value;
+                //TODO: move to resw
+                throw new InvalidCastException("The target value must be an enum type value or a collection comprises of enum values.");
             }
         }
 

@@ -20,27 +20,15 @@ namespace EnumDropDownListBindingSample
 
     public sealed partial class EnumDropDownList : UserControl
     {
-        public SelectionMode SelectionMode
-        {
-            get { return (SelectionMode)GetValue(SelectionModeProperty); }
-            set { SetValue(SelectionModeProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for SelectionMode.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty SelectionModeProperty =
-            DependencyProperty.Register("SelectionMode", typeof(SelectionMode), typeof(EnumDropDownList), new PropertyMetadata(0));
-
-
-        public object DataSource
+        public object ItemsSource
         {
             get { return (object)GetValue(DataSourceProperty); }
             set { SetValue(DataSourceProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for DataSource.  This enables animation, styling, binding, etc...
+        // Using a DependencyProperty as the backing store for ItemsSource.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty DataSourceProperty =
-            DependencyProperty.Register("DataSource", typeof(object), typeof(EnumDropDownList), new PropertyMetadata(0));
-
+            DependencyProperty.Register("ItemsSource", typeof(object), typeof(EnumDropDownList), new PropertyMetadata(0));
 
         public EnumDropDownList()
         {
@@ -61,7 +49,7 @@ namespace EnumDropDownListBindingSample
         private void itemsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             txtSelections.Text = string.Join<object>(", ", itemsList.SelectedItems);
-            Type enumType = EnumTypeHelper.GetEnumType(DataSource);
+            Type enumType = EnumTypeHelper.GetEnumType(ItemsSource);
             if (enumType != null)
             {
                 List<object> enumItemList = new List<object>();
@@ -70,7 +58,7 @@ namespace EnumDropDownListBindingSample
                     enumItemList.Add(Enum.Parse(enumType, item.ToString()));
                 }
                 var method = typeof(Enumerable).GetRuntimeMethod("Cast", new Type[] { typeof(IEnumerable) }).MakeGenericMethod(enumType);
-                this.DataSource = method.Invoke(null, new object[] { enumItemList });
+                this.ItemsSource = method.Invoke(null, new object[] { enumItemList });
             }
         }
     }

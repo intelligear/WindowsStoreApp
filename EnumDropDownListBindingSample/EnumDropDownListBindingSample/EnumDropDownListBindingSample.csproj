@@ -108,6 +108,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataTypeToSelectionModeConverter.cs" />
     <Compile Include="Model\BindableBase.cs" />
     <Compile Include="EnumDropDownList.xaml.cs">
       <DependentUpon>EnumDropDownList.xaml</DependentUpon>

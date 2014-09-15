@@ -8,9 +8,10 @@
     mc:Ignorable="d"
     d:DesignHeight="60"
     d:DesignWidth="150">
-    
+
     <UserControl.Resources>
         <local:EnumToStringListConverter x:Key="EnumToStringListConverter" />
+        <local:DataTypeToSelectionModeConverter x:Key="DataTypeToSelectionModeConverter" />
     </UserControl.Resources>
     
     <Grid>
@@ -21,8 +22,8 @@
         </Border>
         <Popup x:Name="popUp" HorizontalOffset="{Binding Width, ElementName=txtSelections}">
             <ListBox x:Name="itemsList" 
-                 SelectionMode="{Binding SelectionMode, ElementName=enumDropDownList, Mode=OneTime}"
-                 ItemsSource="{Binding DataSource, ElementName=enumDropDownList, Converter={StaticResource EnumToStringListConverter},  Mode=OneTime}" 
+                 SelectionMode="{Binding ItemsSource, ElementName=enumDropDownList, Converter={StaticResource DataTypeToSelectionModeConverter}, Mode=OneTime}"
+                 ItemsSource="{Binding ItemsSource, ElementName=enumDropDownList, Converter={StaticResource EnumToStringListConverter},  Mode=OneTime}" 
                  LostFocus="itemsList_LostFocus" SelectionChanged="itemsList_SelectionChanged"  />
         </Popup>
 

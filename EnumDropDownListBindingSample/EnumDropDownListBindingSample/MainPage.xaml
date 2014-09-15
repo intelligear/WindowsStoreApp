@@ -11,8 +11,8 @@
         <DataTemplate x:Key="itemTemplate">
             <StackPanel  Orientation="Horizontal">
                 <TextBox Text="{Binding CustomerName}" Width="100" Margin="0, 0, 10, 0" />
-                <local:EnumDropDownList SelectionMode="Single"  DataSource="{Binding Favorite, Mode=TwoWay}" />
-                <local:EnumDropDownList SelectionMode="Multiple"  DataSource="{Binding Fruits, Mode=TwoWay}" />
+                <local:EnumDropDownList ItemsSource="{Binding Favorite, Mode=TwoWay}" />
+                <local:EnumDropDownList ItemsSource="{Binding Fruits, Mode=TwoWay}" />
             </StackPanel>
         </DataTemplate>
 
